@@ -24,7 +24,7 @@ public class Game {
 				if (count2 == 1 && count == 1) {
 					col.add(new SnakeHead(new Position(count, count2)));
 				}
-				col.add(new Tile()); //Create a null tile?
+				col.add(new Tile(null)); //Create a null tile? //TODO
 				count2++;
 			}
 			tiles.add(col);
