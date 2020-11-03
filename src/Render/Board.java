@@ -61,8 +61,8 @@ public class Board extends JPanel {
 		    	  label = new JLabel(new SnakePart(new Position(i, j)).getImage());   
 		      }
 		      else {
-		    	  label = new JLabel(new Tile(null).getImage()); //TODO
-		      }
+		    	  label = new JLabel(new Tile(new Position(i, j)).getImage()); 
+	    	  }
 		      
 		      labels[i+j] = label;
 		      boardPanel.add(labels[i+j]);

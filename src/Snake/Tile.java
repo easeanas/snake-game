@@ -16,6 +16,9 @@ public class Tile {
 	public Position getPosition() {
 		return position;
 	}
+	public void setPosition(Position position) {
+		this.position = position;
+	}
 	public ImageIcon getImage() {
 		return img;
 	}

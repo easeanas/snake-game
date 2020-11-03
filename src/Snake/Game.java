@@ -10,10 +10,16 @@ public class Game {
 	private static Snake snake;
 	private static ArrayList<ArrayList<Tile>> tiles;
 	
+	public enum Direction{
+		RIGHT,
+		LEFT,
+		UP,
+		DOWN
+	}
 	
 	public Game() {
 		tiles = new ArrayList<ArrayList<Tile>>();
-		//Add file reader to load level
+		//Add file reader to load level or just set random goal TODO 
 		int count = 0;
 		int cols = Board.getCellsPerCol();
 		int rows = Board.getCellsPerRow();
@@ -24,7 +30,7 @@ public class Game {
 				if (count2 == 1 && count == 1) {
 					col.add(new SnakeHead(new Position(count, count2)));
 				}
-				col.add(new Tile(null)); //Create a null tile? //TODO
+				col.add(new Tile(new Position(count, count2)));
 				count2++;
 			}
 			tiles.add(col);
