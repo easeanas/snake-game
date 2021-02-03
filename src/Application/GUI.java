@@ -2,6 +2,8 @@ package Application;
 
 import Render.Board;
 import Snake.Game;
+
+import java.awt.BorderLayout;
 import java.awt.event.WindowEvent;
 
 
@@ -19,6 +21,8 @@ public class GUI extends javax.swing.JFrame {
 
 	private Board board;
 	private Game game;
+	private int cellsPerCol = 50;
+	private int cellsPerRow = 50;
 	
 	
     /**
@@ -37,9 +41,12 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     	game = new Game();
-        board = new Board();
 
-        gamePanel = board.getBoardPanel(); 
+        gamePanel = new BackgroundImagePanel(cellsPerRow, cellsPerCol);
+        board = new Board(gamePanel, cellsPerRow, cellsPerCol);
+        
+        this.setLayout(new BorderLayout());
+	    this.add(gamePanel, BorderLayout.CENTER);
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -48,7 +55,6 @@ public class GUI extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(690, 690));
         setMinimumSize(new java.awt.Dimension(690, 690));
         
-        gamePanel.setBackground(new java.awt.Color(15, 0, 104));
         gamePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SNAKE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Silom", 0, 18), new java.awt.Color(245, 225, 53))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(gamePanel);

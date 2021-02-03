@@ -18,13 +18,17 @@ import Snake.SnakeHead;
 import Snake.SnakePart;
 
 public class Board extends JPanel {
-	  private static int cellsPerCol = 50;
-	  private static int cellsPerRow = 50;
+	  private static int cellsPerCol;
+	  private static int cellsPerRow;
 	  private Tile tiles[]; //what si this for?
+	  private JLabel labels[];
 
-	  private JPanel boardPanel = new JPanel(new GridLayout(cellsPerRow,cellsPerCol,0,0));
+	  private JPanel boardPanel;
 
-	  public Board(){
+	  public Board(JPanel gamePanel, int rows, int cols){
+		boardPanel = gamePanel;
+		cellsPerCol = cols;
+		cellsPerRow = rows;
 	    setup();
 	  }
 
@@ -33,9 +37,23 @@ public class Board extends JPanel {
 	   */
 	  private void setup() {
 	    boardPanel.setSize(680,680);
-	    redraw();
+	    setLabels();
+	    //redraw();
 	  }
 
+	  public void setLabels() {
+			//Is the get method necessary?
+		  labels = new JLabel[(cellsPerCol*getCellsPerRow())];
+		  for (int i =  0; i < cellsPerCol; i++) {
+		    	for (int j = 0; j < cellsPerRow; j++) {
+		    		JLabel label = new JLabel(new Tile(new Position(i, j)).getImage());
+		    		boardPanel.add(label);
+		    	}
+		  }
+	      boardPanel.validate();
+	      boardPanel.repaint();
+	  }
+	  
 	  /**
 	   * Redraw the board when any changes to it has been made.
 	   * Updates the display.
@@ -43,29 +61,23 @@ public class Board extends JPanel {
 	  public void redraw() {
 		  boardPanel.removeAll();
 	      boardPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SNAKE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Silom", 0, 18), new java.awt.Color(245, 225, 53))); // NOI18N
-		  boardPanel.setBackground(new java.awt.Color(15, 0, 104));
+		  //boardPanel.setBackground(new java.awt.Color(15, 0, 104));
 
-	    JLabel labels[] = new JLabel[(cellsPerCol*getCellsPerRow())];
 	    Snake snake = Game.getSnake();
 	    //Position snakePos = snake.getHeadPosition();
 
 	    for (int i =  0; i < cellsPerCol; i++) {
 	    	for (int j = 0; j < cellsPerRow; j++) {
-		      JLabel label;
 		      
 		      Tile tile = Game.getTile(i, j);
-		      if (tile instanceof SnakeHead) {
-		    	  label = new JLabel(new SnakeHead(new Position(i, j)).getImage());  
-		      }
-		      else if (tile instanceof SnakePart) {
-		    	  label = new JLabel(new SnakePart(new Position(i, j)).getImage());   
-		      }
-		      else {
-		    	  label = new JLabel(new Tile(new Position(i, j)).getImage()); 
-	    	  }
-		      
-		      labels[i+j] = label;
-		      boardPanel.add(labels[i+j]);
+	    	  tile.setPosition(new Position(i,j));
+	    	  labels[i*cellsPerRow+j].setIcon(tile.getImage());  
+		  
+		      //boardPanel.add(labels[i+j]);
+		   //   boardPanel.revalidate();
+		     // boardPanel.repaint();
+		      System.out.println("LOOP: i = "+i+", j= "+j);
+//Chekc 
 	    	}
 	    }
 	    boardPanel.updateUI();
