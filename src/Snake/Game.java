@@ -27,34 +27,49 @@ public class Game {
 		DOWN
 	}
 	
-	/**
-	 * Initalises the board and sets all cells.
-	 * @param b
-	 */
-	public void init(Board b) {
-		this.board = b;
-		//Add file reader to load level or just set random goal TODO 
-		int count = 0;
-		int cols = this.board.getCellsPerCol();
-		int rows = this.board.getCellsPerRow();
-		this.tiles = new ArrayList<>();
-		while (count < rows) {
-			int count2 = 0;
-			while (count2 < cols) {
-				ArrayList<Tile> col = new ArrayList<>();
+  private static Star star;
+  private Board board;
+  private static Snake snake;
+  private ArrayList<ArrayList<Tile>> tiles;
 
-				if (count2 == 1 && count == 1) {
-					col.add(new SnakeHead(new Position(count, count2)));
-				}
-				else {
-					col.add(new Tile(new Position(count, count2)));
-				}
-				count2++;
-				this.tiles.add(col);
-			}
-			count++;
-		}
-	}
+  /**
+   * The directions of movement the player can make.
+   */
+  public enum Direction {
+    RIGHT, LEFT, UP, DOWN
+  }
+
+  /**
+   * Initalises the board and sets all cells.
+   * 
+   * @param b
+   */
+  public void init(Board b) {
+    this.board = b;
+    // Add file reader to load level or just set random goal TODO
+    int cols = this.board.getCellsPerCol();
+    int rows = this.board.getCellsPerRow();
+    this.tiles = new ArrayList<>();
+    
+    int count = 0;
+    while (count < rows) {
+      int count2 = 0;
+      
+      ArrayList<Tile> col = new ArrayList<>();
+      
+      while (count2 < cols) {
+        if (count2 == 1 && count == 1) {
+          col.add(new SnakeHead(new Position(count, count2)));
+        } else {
+          col.add(new Tile(new Position(count, count2)));
+        }
+        count2++;
+      }
+      this.tiles.add(col);
+      count++;
+    }
+    System.out.println("****\n"+tiles);
+  }
 
 	/**
 	 * Gets the star.
