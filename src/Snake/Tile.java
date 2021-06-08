@@ -10,7 +10,7 @@ public class Tile {
 	
 	public Tile(Position position) {
 		this.position = position;
-		img = new ImageIcon("src/Render/Render.Images/blankTile.png");
+		img = new ImageIcon("src/Render/Render/Images/blankTile.png");
 	}
 
 	public Position getPosition() {
