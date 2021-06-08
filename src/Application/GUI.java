@@ -40,10 +40,11 @@ public class GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	game = new Game();
 
         gamePanel = new BackgroundImagePanel(cellsPerRow, cellsPerCol);
-        board = new Board(gamePanel, cellsPerRow, cellsPerCol);
+    	game = new Game();
+        board = new Board(game, gamePanel, cellsPerRow, cellsPerCol);
+        game.init(board);
         
         this.setLayout(new BorderLayout());
 	    this.add(gamePanel, BorderLayout.CENTER);
