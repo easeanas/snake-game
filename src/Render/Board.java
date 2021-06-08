@@ -37,9 +37,9 @@ public class Board extends JPanel {
 	   * Initialise the board.
 	   */
 	  private void setup() {
-	    boardPanel.setSize(680,680);
+	   // boardPanel.setSize(680,680);
 	    setLabels();
-	    //redraw();
+	    redraw();
 	  }
 
 	  public void setLabels() {
