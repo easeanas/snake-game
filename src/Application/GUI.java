@@ -21,8 +21,8 @@ public class GUI extends javax.swing.JFrame {
 
 	private Board board;
 	private Game game;
-	private int cellsPerCol = 50;
-	private int cellsPerRow = 50;
+	private static int cellsPerCol = 50;
+	private static int cellsPerRow = 50;
 	
 	
     /**
