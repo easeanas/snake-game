@@ -1,8 +1,8 @@
-package Snake;
+package snake;
 
 import java.util.ArrayList;
 
-import Snake.Game.Direction;
+import snake.Game.Direction;
 
 public class Snake {
 	private int length;

@@ -1,4 +1,4 @@
-package Render;
+package render;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
@@ -9,13 +9,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Snake.Star;
-import Snake.Tile;
-import Snake.Game;
-import Snake.Position;
-import Snake.Snake;
-import Snake.SnakeHead;
-import Snake.SnakePart;
+import snake.Star;
+import snake.Tile;
+import snake.Game;
+import snake.Position;
+import snake.Snake;
+import snake.SnakeHead;
+import snake.SnakePart;
 
 public class Board extends JPanel {
 	  private Game game;

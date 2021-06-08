@@ -1,6 +1,6 @@
 package application;
 
-import Snake.Game;
+import snake.Game;
 import render.Board;
 
 import java.awt.BorderLayout;

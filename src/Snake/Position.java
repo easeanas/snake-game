@@ -1,4 +1,4 @@
-package Snake;
+package snake;
 
 public class Position {
 	int x;

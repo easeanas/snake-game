@@ -1,4 +1,4 @@
-package Snake;
+package snake;
 import java.util.ArrayList;
 
 import application.GUI;
