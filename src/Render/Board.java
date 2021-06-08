@@ -28,7 +28,7 @@ public class Board extends JPanel {
 	  private int cellsPerCol;
 	  private int cellsPerRow;
 	  private Tile tiles[]; //what si this for?
-	  private JLabel labels[];
+	  private JLabel labels[][];
 
 	  private JPanel boardPanel;
 
@@ -42,16 +42,16 @@ public class Board extends JPanel {
      * @param cols
      */
 	public Board(Game game, JPanel gamePanel, int rows, int cols){
+  this.game = game;
 		this.boardPanel = gamePanel;
 		this.cellsPerCol = cols;
 		this.cellsPerRow = rows;
-	    setup();
 	  }
 
 	  /**
 	   * Setup the board.
 	   */
-	  private void setup() {
+	  public void setup() {
 	   // boardPanel.setSize(680,680);
 	    setLabels();
 	    redraw();
@@ -62,11 +62,12 @@ public class Board extends JPanel {
 	 */
 	public void setLabels() {
 			//Is the get method necessary?
-		  this.labels = new JLabel[(this.cellsPerCol*getCellsPerRow())];
+		  this.labels = new JLabel[getCellsPerCol()][getCellsPerRow()];
 		  for (int i =  0; i < this.cellsPerCol; i++) {
 		    	for (int j = 0; j < this.cellsPerRow; j++) {
 		    		JLabel label = new JLabel(new Tile(new Position(i, j)).getImage());
 		    		this.boardPanel.add(label);
+		    		this.labels[i][j] = label;
 		    	}
 		  }
 	      this.boardPanel.validate();
@@ -90,7 +91,7 @@ public class Board extends JPanel {
 		      
 		      Tile tile = this.game.getTile(i, j);
 	    	  tile.setPosition(new Position(i,j));
-	    	  this.labels[i*this.cellsPerRow+j].setIcon(tile.getImage());  
+	    	  this.labels[i][j].setIcon(tile.getImage());  
 		  
 		      //boardPanel.add(labels[i+j]);
 		      this.boardPanel.revalidate();
