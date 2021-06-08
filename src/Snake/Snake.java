@@ -4,15 +4,27 @@ import java.util.ArrayList;
 
 import snake.Game.Direction;
 
+/**
+ * The snake class stores information about the snake.
+ *
+ * @author Anastasia Ease
+ *
+ */
 public class Snake {
 	private int length;
 	private Position headPosition;
 	private ArrayList<SnakePart> body;
 	
+	/**
+	 * The snake constructors intialises the length and position of the snake.
+	 *
+  * @param length
+  * @param position
+  */
 	public Snake(int length, Position position) {
 		this.length = length;
 		this.headPosition = position;
-		body = new ArrayList<>();
+		this.body = new ArrayList<>();
 	}
 	
 	/**
@@ -26,38 +38,64 @@ public class Snake {
 	}
 	
 	private void moveAlong(Direction dir) {
-		headPosition = new Position(headPosition.getX(), headPosition.getY());
-		for (SnakePart part : body) {
+		this.headPosition = new Position(this.headPosition.getX(), this.headPosition.getY());
+		for (SnakePart part : this.body) {
 			Position oldPos = part.getPosition();
 			switch (dir) {
 			case RIGHT:
 				part.setPosition(new Position(oldPos.getX()+1, oldPos.getY()));
-			case LEFT:
+        break;
+      case LEFT:
 				part.setPosition(new Position(oldPos.getX()-1, oldPos.getY()));
-			case UP:
+        break;
+      case UP:
 				part.setPosition(new Position(oldPos.getX(), oldPos.getY()+1));
-			case DOWN:
+        break;
+      case DOWN:
 				part.setPosition(new Position(oldPos.getX(), oldPos.getY()-1));
+        break;
+      default:
+        break;
 			}
 		}
 	}
 	
 	private void addStar() {
 		//Code contract: you can not call this method after the snake has moved because it uses the current position of the last tile
-		Position lastStar = body.get(length-1).getPosition(); 
-		body.add(new SnakePart(lastStar));
+		Position lastStar = this.body.get(this.length-1).getPosition(); 
+		this.body.add(new SnakePart(lastStar));
 	}
 	
-	public int getLength() {
-		return length;
+	/**
+	 * Gets the length of the snake.
+	 *
+  * @return length of snake
+  */
+ public int getLength() {
+		return this.length;
 	}
-	public void setLength(int length) {
+	/**
+	 * Sets the length of the snake.
+	 *
+  * @param length of snake
+  */
+ public void setLength(int length) {
 		this.length = length;
 	}
-	public Position getHeadPosition() {
-		return headPosition;
+	/**
+	 * Gets the position of the head of the snake.
+	 *
+  * @return head position
+  */
+ public Position getHeadPosition() {
+		return this.headPosition;
 	}
-	public void setHeadPosition(Position headPosition) {
+	/**
+	 * Sets the head position of the snake.
+	 *
+  * @param headPosition of the snake
+  */
+ public void setHeadPosition(Position headPosition) {
 		this.headPosition = headPosition;
 	}
 	

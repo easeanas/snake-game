@@ -2,23 +2,29 @@ package render;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
-import java.awt.GridLayout;
 import java.net.URL;
 
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import snake.Star;
 import snake.Tile;
 import snake.Game;
 import snake.Position;
 import snake.Snake;
-import snake.SnakeHead;
-import snake.SnakePart;
 
+/**
+ * The board class represents the board of the game containing each cell 
+ * and all the items in the game.
+ *
+ * @author Anastasia Ease
+ *
+ */
 public class Board extends JPanel {
-	  private Game game;
+	  /**
+   * Default serial version UID.
+   */
+  private static final long serialVersionUID = 1L;
+    private Game game;
 	  private int cellsPerCol;
 	  private int cellsPerRow;
 	  private Tile tiles[]; //what si this for?
