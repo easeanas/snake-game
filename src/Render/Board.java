@@ -18,14 +18,15 @@ import Snake.SnakeHead;
 import Snake.SnakePart;
 
 public class Board extends JPanel {
-	  private static int cellsPerCol;
-	  private static int cellsPerRow;
+	  private Game game;
+	  private int cellsPerCol;
+	  private int cellsPerRow;
 	  private Tile tiles[]; //what si this for?
 	  private JLabel labels[];
 
 	  private JPanel boardPanel;
 
-	  public Board(JPanel gamePanel, int rows, int cols){
+	  public Board(Game game, JPanel gamePanel, int rows, int cols){
 		boardPanel = gamePanel;
 		cellsPerCol = cols;
 		cellsPerRow = rows;
@@ -69,13 +70,13 @@ public class Board extends JPanel {
 	    for (int i =  0; i < cellsPerCol; i++) {
 	    	for (int j = 0; j < cellsPerRow; j++) {
 		      
-		      Tile tile = Game.getTile(i, j);
+		      Tile tile = game.getTile(i, j);
 	    	  tile.setPosition(new Position(i,j));
 	    	  labels[i*cellsPerRow+j].setIcon(tile.getImage());  
 		  
 		      //boardPanel.add(labels[i+j]);
-		   //   boardPanel.revalidate();
-		     // boardPanel.repaint();
+		      boardPanel.revalidate();
+		      boardPanel.repaint();
 		      System.out.println("LOOP: i = "+i+", j= "+j);
 //Chekc 
 	    	}
@@ -102,7 +103,7 @@ public class Board extends JPanel {
 	    }
     }
 
-	public static int getCellsPerRow() {
+	public int getCellsPerRow() {
 		return cellsPerRow;
 	}
 
@@ -110,7 +111,7 @@ public class Board extends JPanel {
 		this.cellsPerRow = cellsPerRow;
 	}
 
-	public static int getCellsPerCol() {
+	public int getCellsPerCol() {
 		return cellsPerCol;
 	}
 }
