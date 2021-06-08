@@ -26,15 +26,24 @@ public class Board extends JPanel {
 
 	  private JPanel boardPanel;
 
-	  public Board(Game game, JPanel gamePanel, int rows, int cols){
-		boardPanel = gamePanel;
-		cellsPerCol = cols;
-		cellsPerRow = rows;
+    /**
+     * The board constructor, which sets the game and gamePanel objects.
+     * It also sets the dimensions (number of rows and cols) of the board.
+     * 
+     * @param game
+     * @param gamePanel
+     * @param rows
+     * @param cols
+     */
+	public Board(Game game, JPanel gamePanel, int rows, int cols){
+		this.boardPanel = gamePanel;
+		this.cellsPerCol = cols;
+		this.cellsPerRow = rows;
 	    setup();
 	  }
 
 	  /**
-	   * Initialise the board.
+	   * Setup the board.
 	   */
 	  private void setup() {
 	   // boardPanel.setSize(680,680);
@@ -42,53 +51,56 @@ public class Board extends JPanel {
 	    redraw();
 	  }
 
-	  public void setLabels() {
+	  /**
+	 * Sets the JLables of each cell in the board with their image.
+	 */
+	public void setLabels() {
 			//Is the get method necessary?
-		  labels = new JLabel[(cellsPerCol*getCellsPerRow())];
-		  for (int i =  0; i < cellsPerCol; i++) {
-		    	for (int j = 0; j < cellsPerRow; j++) {
+		  this.labels = new JLabel[(this.cellsPerCol*getCellsPerRow())];
+		  for (int i =  0; i < this.cellsPerCol; i++) {
+		    	for (int j = 0; j < this.cellsPerRow; j++) {
 		    		JLabel label = new JLabel(new Tile(new Position(i, j)).getImage());
-		    		boardPanel.add(label);
+		    		this.boardPanel.add(label);
 		    	}
 		  }
-	      boardPanel.validate();
-	      boardPanel.repaint();
+	      this.boardPanel.validate();
+	      this.boardPanel.repaint();
 	  }
 	  
 	  /**
-	   * Redraw the board when any changes to it has been made.
+	   * Redraw the board when any changes to it have been made.
 	   * Updates the display.
 	   */
 	  public void redraw() {
-		  boardPanel.removeAll();
-	      boardPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SNAKE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Silom", 0, 18), new java.awt.Color(245, 225, 53))); // NOI18N
+		  this.boardPanel.removeAll();
+	      this.boardPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SNAKE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Silom", 0, 18), new java.awt.Color(245, 225, 53))); // NOI18N
 		  //boardPanel.setBackground(new java.awt.Color(15, 0, 104));
 
 	    Snake snake = Game.getSnake();
 	    //Position snakePos = snake.getHeadPosition();
 
-	    for (int i =  0; i < cellsPerCol; i++) {
-	    	for (int j = 0; j < cellsPerRow; j++) {
+	    for (int i =  0; i < this.cellsPerCol; i++) {
+	    	for (int j = 0; j < this.cellsPerRow; j++) {
 		      
-		      Tile tile = game.getTile(i, j);
+		      Tile tile = this.game.getTile(i, j);
 	    	  tile.setPosition(new Position(i,j));
-	    	  labels[i*cellsPerRow+j].setIcon(tile.getImage());  
+	    	  this.labels[i*this.cellsPerRow+j].setIcon(tile.getImage());  
 		  
 		      //boardPanel.add(labels[i+j]);
-		      boardPanel.revalidate();
-		      boardPanel.repaint();
+		      this.boardPanel.revalidate();
+		      this.boardPanel.repaint();
 		      System.out.println("LOOP: i = "+i+", j= "+j);
 //Chekc 
 	    	}
 	    }
-	    boardPanel.updateUI();
+	    this.boardPanel.updateUI();
 	  }
 
 	  /**
 	   * Get the current board.
 	   * @return JPanel board
 	   */
-	  public JPanel getBoardPanel(){return boardPanel;}
+	  public JPanel getBoardPanel(){return this.boardPanel;}
 
 	  /**
 	   * Play sound of the given URL
@@ -103,15 +115,30 @@ public class Board extends JPanel {
 	    }
     }
 
+	/**
+	 * Gets number of cells per row.
+	 * 
+	 * @return cells per row
+	 */
 	public int getCellsPerRow() {
-		return cellsPerRow;
+		return this.cellsPerRow;
 	}
 
+	/**
+	 * Sets number of cells per row.
+	 * 
+	 * @param cellsPerRow
+	 */
 	public void setCellsPerRow(int cellsPerRow) {
 		this.cellsPerRow = cellsPerRow;
 	}
 
+	/**
+	 * Gets number of cells per column.
+	 * 
+	 * @return number of cells per column
+	 */
 	public int getCellsPerCol() {
-		return cellsPerCol;
+		return this.cellsPerCol;
 	}
 }
