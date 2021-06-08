@@ -49,6 +49,7 @@ public class GUI extends javax.swing.JFrame {
 		this.game = new Game();
 		this.board = new Board(this.game, this.gamePanel, cellsPerRow, cellsPerCol);
 		this.game.init(this.board);
+		this.board.setup();
 
 		this.setLayout(new BorderLayout());
 		this.add(this.gamePanel, BorderLayout.CENTER);
