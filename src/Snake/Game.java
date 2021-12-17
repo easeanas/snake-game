@@ -32,27 +32,27 @@ public class Game {
    */
   public void init(Board b) {
     this.board = b;
-    // Add file reader to load level or just set random goal TODO
+    // Add file reader to load level or just set random goal TODO:
     int cols = this.board.getCellsPerCol();
     int rows = this.board.getCellsPerRow();
     this.tiles = new ArrayList<>();
     
-    int count = 0;
-    while (count < rows) {
-      int count2 = 0;
+    int rowCount = 0;
+    while (rowCount < rows) {
+      int colCount = 0;
       
       ArrayList<Tile> col = new ArrayList<>();
       
-      while (count2 < cols) {
-        if (count2 == 1 && count == 1) {
-          col.add(new SnakeHead(new Position(count, count2)));
+      while (colCount < cols) {
+        if (colCount == 1 && rowCount == 1) {
+          col.add(new SnakeHead(new Position(rowCount, colCount)));
         } else {
-          col.add(new Tile(new Position(count, count2)));
+          col.add(new Tile(new Position(rowCount, colCount)));
         }
-        count2++;
+        colCount++;
       }
       this.tiles.add(col);
-      count++;
+      rowCount++;
     }
     System.out.println("****\n"+tiles);
   }
